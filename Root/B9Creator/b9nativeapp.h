@@ -53,7 +53,7 @@ public:
         this->argc = argc;
 
         for(int i = 0; i < argc; i++)
-            this->argv.push_back(QString::fromAscii(argv[i]));
+            this->argv.push_back(QString::fromLatin1(argv[i]));
 
     }
     ~B9NativeApp()

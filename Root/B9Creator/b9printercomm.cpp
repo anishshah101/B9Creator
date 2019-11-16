@@ -36,7 +36,7 @@
 //
 *************************************************************************************/
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QDir>
 #include <QProcess>
 #include <QTimer>
@@ -196,7 +196,7 @@ B9PrinterComm::~B9PrinterComm()
 
 void B9PrinterComm::SendCmd(QString sCmd)
 {
-    if(m_serialDevice)m_serialDevice->write(sCmd.toAscii()+'\n');
+    if(m_serialDevice)m_serialDevice->write(sCmd.toLatin1()+'\n');
     if(sCmd == "r" || sCmd == "R") m_Status.setHomeStatus(B9PrinterStatus::HS_SEEKING);
     qDebug() << "SendCmd->" << sCmd;
 }
@@ -468,7 +468,7 @@ void B9PrinterComm::ReadAvailable() {
                 }
             }
 
-            int iCmdID = m_sSerialString.left(1).toUpper().toAscii().at(0);
+            int iCmdID = m_sSerialString.left(1).toUpper().toLatin1().at(0);
             QMessageBox vWarn(QMessageBox::Critical,"Runaway X Motor!","X Motor Failure Detected, Code:  " + m_sSerialString +"\nClose program and troubleshoot hardware.");
             switch (iCmdID){
             case 'U':  // Mechanical failure of encoder?

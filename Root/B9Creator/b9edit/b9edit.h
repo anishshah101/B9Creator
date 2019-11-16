@@ -39,7 +39,7 @@
 #ifndef B9EDIT_H
 #define B9EDIT_H
 
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #include <QDebug>
 #include <QMessageBox>
 #include <QFileDialog>
@@ -55,7 +55,7 @@ class B9Edit : public QMainWindow
 	Q_OBJECT
 
 public:
-    B9Edit(QWidget *parent = 0, Qt::WFlags flags = 0, QString inputfile = "");
+    B9Edit(QWidget *parent = 0, Qt::WindowFlags flags = 0, QString inputfile = "");
     ~B9Edit();
 
 public slots:

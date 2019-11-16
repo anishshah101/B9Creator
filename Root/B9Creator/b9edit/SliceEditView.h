@@ -38,7 +38,7 @@
 
 #ifndef SLICEEDITVIEW_H
 #define SLICEEDITVIEW_H
-#include <QtGui/QMainWindow>
+#include <QMainWindow>
 #include "ui_sliceeditview.h"
 #include "DrawingContext.h"
 #include "b9edit.h"
@@ -52,7 +52,7 @@ class SliceEditView : public QMainWindow
 {
 	Q_OBJECT
 public:
-    SliceEditView(QWidget *parent = 0, Qt::WFlags flags = Qt::Window);
+    SliceEditView(QWidget *parent = 0, Qt::WindowFlags flags = Qt::Window);
 	~SliceEditView();
 
 	Ui::SliceEditViewClass ui;

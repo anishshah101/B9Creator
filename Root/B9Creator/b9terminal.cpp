@@ -141,7 +141,7 @@ void PCycleSettings::setFactorySettings()
     m_dZFlushMM = UP2FLUSH;
 }
 
-B9Terminal::B9Terminal(QWidget *parent, Qt::WFlags flags) :
+B9Terminal::B9Terminal(QWidget *parent, Qt::WindowFlags flags) :
     QWidget(parent, flags),
     ui(new Ui::B9Terminal)
 {
@@ -494,7 +494,7 @@ void B9Terminal::onMotionResetComplete()
     if(pPrinterComm->getHomeStatus()==B9PrinterStatus::HS_FOUND) ui->lineEditNeedsInit->setText("No");
     else if(pPrinterComm->getHomeStatus()==B9PrinterStatus::HS_UNKNOWN) ui->lineEditNeedsInit->setText("Yes");
     else ui->lineEditNeedsInit->setText("Seeking");
-    ui->lineEditZDiff->setText(QString::number(pPrinterComm->getLastHomeDiff()).toAscii());
+    ui->lineEditZDiff->setText(QString::number(pPrinterComm->getLastHomeDiff()).toLatin1());
     m_pResetTimer->stop();
 
     // Check for post reset go to fill command

@@ -40,9 +40,9 @@
 #define LOADINGBAR_H
 
 #include <QDialog>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QProgressBar>
-#include <QtGui/QPushButton>
+#include <QHBoxLayout>
+#include <QProgressBar>
+#include <QPushButton>
 
 
 class LoadingBar : public QDialog

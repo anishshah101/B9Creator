@@ -40,12 +40,12 @@
 #define WORLDVIEW_H
 
 #include <QGLWidget>
-#include "b9layout.h"
-#include "b9supportstructure.h"
 #include <QPoint>
+#include <QVector2D>
+#include <QVector3D>
+#include "b9supportstructure.h"
 class Slice;
 class B9ModelInstance;
-class B9SupportStructure;
 class MainWindow;
 class B9Layout;
 class Triangle3D;
@@ -215,6 +215,5 @@ public: //Events
 
     //layout window pointer.
     B9Layout* pMain;
- };
-
- #endif
+};
+#endif //WORLDVIEW_H

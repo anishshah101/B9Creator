@@ -40,7 +40,7 @@
 #include <QtCore/QDir>
 #include <QtCore/QLibraryInfo>
 #include <QtCore/QProcess>
-#include <QtGui/QMessageBox>
+#include <QMessageBox>
 #include <QtDebug>
 #include "helpsystem.h"
 

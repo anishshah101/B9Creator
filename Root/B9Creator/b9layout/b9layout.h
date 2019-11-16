@@ -56,7 +56,7 @@ class B9Layout : public QMainWindow
 	Q_OBJECT
 
 public:
-    B9Layout(QWidget *parent = 0, Qt::WFlags flags = 0);
+    B9Layout(QWidget *parent = 0, Qt::WindowFlags flags = 0);
     ~B9Layout();
     std::vector<B9ModelInstance*> GetAllInstances();
     std::vector<B9ModelInstance*> GetSelectedInstances();
@@ -209,7 +209,7 @@ public slots:
 
     //exporting
     void PromptExportToSTL();//export the whole layout to a stl file.
-        bool ExportToSTL(QString filename);
+    bool ExportToSTL(QString filename);
 
 
 

@@ -39,7 +39,7 @@
 #include "aboutbox.h"
 #include "ui_aboutbox.h"
 
-aboutbox::aboutbox(QWidget *parent, Qt::WFlags flags) :
+aboutbox::aboutbox(QWidget *parent, Qt::WindowFlags flags) :
     QWidget(parent, flags),
     ui(new Ui::aboutbox)
 {

@@ -46,7 +46,6 @@
 #include "worldview.h"
 #include "b9layoutprojectdata.h"
 #include "b9modelinstance.h"
-#include "b9supportstructure.h"
 #include "geometricfunctions.h"
 #include "sliceset.h"
 #include "slice.h"

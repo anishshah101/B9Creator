@@ -608,8 +608,8 @@ bool B9UpdateManager::CopyFromTemp()
                     QFile::remove(QString(dest).append(".old"));
 
                 //rename the executable we are running. to the .old
-                if(rename(dest.toAscii(),
-                           QString(dest).append(".old").toAscii()))
+                if(rename(dest.toLatin1(),
+                           QString(dest).append(".old").toLatin1()))
                     return false;
             }
             else

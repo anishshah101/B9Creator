@@ -58,7 +58,7 @@
 //////////////////////////////////////////////////////
 //Public
 //////////////////////////////////////////////////////
-B9Layout::B9Layout(QWidget *parent, Qt::WFlags flags) : QMainWindow(parent, flags)
+B9Layout::B9Layout(QWidget *parent, Qt::WindowFlags flags) : QMainWindow(parent, flags)
 {
 	ui.setupUi(this);
 
@@ -2247,7 +2247,7 @@ bool B9Layout::SliceWorldToJob(QString filename)
     int nummodels = 0;
     B9ModelInstance* pInst;
 	double zhieght = project->GetBuildSpace().z();
-	double thickness = project->GetPixelThickness()*0.001;
+    double thickness = project->GetPixelThickness()*0.005;
     QString jobname = project->GetJobName();
     QString jobdesc = project->GetJobDescription();
 	CrushedPrintJob* pMasterJob = NULL;
@@ -2324,9 +2324,6 @@ bool B9Layout::SliceWorldToJob(QString filename)
                 }
 
             }while(moreSlicesToCome);
-
-
-
             inst->FreeFromSlicing();
 		}
 	}
@@ -2372,11 +2369,11 @@ bool B9Layout::SliceWorldToSlc(QString filename)
 	}
 
     //make a loading bar
-        LoadingBar progressbar(0, numlayers*nummodels);
-        QObject::connect(&progressbar,SIGNAL(rejected()),this,SLOT(CancelSlicing()));
-        progressbar.setDescription("Exporting SLC..");
-        progressbar.setValue(0);
-        QApplication::processEvents();
+    LoadingBar progressbar(0, numlayers*nummodels);
+    QObject::connect(&progressbar,SIGNAL(rejected()),this,SLOT(CancelSlicing()));
+    progressbar.setDescription("Exporting SLC..");
+    progressbar.setValue(0);
+    QApplication::processEvents();
 
 	
     //create an slc exporter

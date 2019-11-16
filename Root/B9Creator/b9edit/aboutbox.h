@@ -49,7 +49,7 @@ class aboutbox : public QWidget
     Q_OBJECT
     
 public:
-    explicit aboutbox(QWidget *parent = 0, Qt::WFlags flags = Qt::Dialog);
+    explicit aboutbox(QWidget *parent = 0, Qt::WindowFlags flags = Qt::Dialog);
     ~aboutbox();
     void setText(QString content);
 

@@ -49,14 +49,14 @@ dlgCalBuildTable::dlgCalBuildTable(B9Terminal* pTerminal,QWidget *parent) :
     connect(m_pTerminal, SIGNAL(HomeFound()), this, SLOT(onResetComplete()));
     connect(m_pTerminal, SIGNAL(ZMotionComplete()),this, SLOT(onMotionComplete()));
 
-    bFindingHome = TRUE;
-    ui->checkBoxStep2->setEnabled(FALSE);
-    ui->pushButtonHomeStep3->setEnabled(FALSE);
-    ui->pushButtonZeroStep4->setEnabled(FALSE);
-    ui->checkBoxStep5->setEnabled(FALSE);
-    ui->checkBoxStep6->setEnabled(FALSE);
-    ui->pushButtonRaiseUpStep7->setEnabled(FALSE);
-    ui->checkBoxStep8->setEnabled(FALSE);
+    bFindingHome = true;
+    ui->checkBoxStep2->setEnabled(false);
+    ui->pushButtonHomeStep3->setEnabled(false);
+    ui->pushButtonZeroStep4->setEnabled(false);
+    ui->checkBoxStep5->setEnabled(false);
+    ui->checkBoxStep6->setEnabled(false);
+    ui->pushButtonRaiseUpStep7->setEnabled(false);
+    ui->checkBoxStep8->setEnabled(false);
 }
 
 dlgCalBuildTable::~dlgCalBuildTable()
@@ -90,18 +90,18 @@ void dlgCalBuildTable::on_Step3()
 {
     ui->lineEditStatus->setText("Printer in motion, please wait...");
     findHome();
-    ui->checkBoxStep2->setEnabled(FALSE);
-    ui->pushButtonHomeStep3->setEnabled(FALSE);
-    ui->pushButtonZeroStep4->setEnabled(TRUE);
-    ui->checkBoxStep5->setEnabled(FALSE);
+    ui->checkBoxStep2->setEnabled(false);
+    ui->pushButtonHomeStep3->setEnabled(false);
+    ui->pushButtonZeroStep4->setEnabled(true);
+    ui->checkBoxStep5->setEnabled(false);
 }
 
 void dlgCalBuildTable::on_Step4()
 {
     ui->lineEditStatus->setText("Printer in motion, please wait...");
     goZero();
-    ui->pushButtonZeroStep4->setEnabled(FALSE);
-    ui->checkBoxStep5->setEnabled(FALSE);
+    ui->pushButtonZeroStep4->setEnabled(false);
+    ui->checkBoxStep5->setEnabled(false);
 }
 
 void dlgCalBuildTable::on_Step5(bool checked)
@@ -119,9 +119,9 @@ void dlgCalBuildTable::on_Step7()
 {
     ui->lineEditStatus->setText("Printer in motion, please wait...");
     raiseUp();
-    ui->checkBoxStep6->setEnabled(FALSE);
-    ui->pushButtonRaiseUpStep7->setEnabled(FALSE);
-    ui->checkBoxStep8->setEnabled(FALSE);
+    ui->checkBoxStep6->setEnabled(false);
+    ui->pushButtonRaiseUpStep7->setEnabled(false);
+    ui->checkBoxStep8->setEnabled(false);
 }
 
 void dlgCalBuildTable::on_Step8(bool checked)
@@ -132,7 +132,7 @@ void dlgCalBuildTable::on_Step8(bool checked)
 
 void dlgCalBuildTable::findHome()
 {    
-    this->setEnabled(FALSE);
+    this->setEnabled(false);
     m_pTerminal->rcResetHomePos();
 }
 
@@ -151,15 +151,15 @@ void dlgCalBuildTable::raiseUp()
 void dlgCalBuildTable::onResetComplete()
 {    
     ui->lineEditStatus->setText("Ready...");
-    this->setEnabled(TRUE);
+    this->setEnabled(true);
 }
 
 void dlgCalBuildTable::onMotionComplete()
 {
-    if(bFindingHome){bFindingHome=FALSE;return;}
+    if(bFindingHome){bFindingHome=false;return;}
     ui->lineEditStatus->setText("Ready...");
     if(!ui->checkBoxStep5->isChecked())
-        ui->checkBoxStep5->setEnabled(TRUE);
+        ui->checkBoxStep5->setEnabled(true);
     else
-        ui->checkBoxStep8->setEnabled(TRUE);
+        ui->checkBoxStep8->setEnabled(true);
 }

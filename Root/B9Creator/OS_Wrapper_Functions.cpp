@@ -152,17 +152,17 @@ QString CROSS_OS_GetDirectoryFromLocationTag(QString locationtag)
 {
     //Make sure the paths exist.
     #ifdef Q_OS_WIN
-        QDir().mkpath(QDesktopServices::storageLocation(QDesktopServices::DataLocation));
-        QDir().mkpath(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation) + "/B9Creator");
-        QDir().mkpath(QDesktopServices::storageLocation(QDesktopServices::TempLocation) + "/B9Creator");
+        QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+        QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/B9Creator");
+        QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/B9Creator");
     #endif
     #ifdef Q_OS_MAC
-        QDir().mkpath(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation) + "/B9Creator");
-        QDir().mkpath(QDesktopServices::storageLocation(QDesktopServices::TempLocation) + "/B9Creator");
+        QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/B9Creator");
+        QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/B9Creator");
     #endif
     #ifdef Q_OS_LINUX
-         QDir().mkpath(QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation) + "/B9Creator");
-        QDir().mkpath(QDesktopServices::storageLocation(QDesktopServices::TempLocation) + "/B9Creator");
+         QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/B9Creator");
+        QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/B9Creator");
     #endif
 
 
@@ -170,7 +170,7 @@ QString CROSS_OS_GetDirectoryFromLocationTag(QString locationtag)
     if(locationtag == "APPLICATION_DIR")
     {
         #ifdef Q_OS_WIN // User/AppData/Local/B9Creatoions LLC/B9Creator
-            dir = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
+            dir = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
         #endif
         #ifdef Q_OS_MAC//AppBundle/content/resources
             QDir recources = QDir(QCoreApplication::applicationDirPath());
@@ -188,11 +188,11 @@ QString CROSS_OS_GetDirectoryFromLocationTag(QString locationtag)
     }
     if(locationtag == "TEMP_DIR")
     {
-        dir = QDesktopServices::storageLocation(QDesktopServices::TempLocation) + "/B9Creator";
+        dir = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/B9Creator";
     }
     if(locationtag == "DOCUMENTS_DIR")
     {
-        dir = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation) + "/B9Creator";
+        dir =QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) + "/B9Creator";
     }
 
     return QDir(dir).absolutePath();

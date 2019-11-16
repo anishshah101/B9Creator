@@ -37,9 +37,10 @@
 *************************************************************************************/
 
 #include <QtGui>
+#include <QDesktopWidget>
 #include "b9projector.h"
 
-B9Projector::B9Projector(bool bPrintWindow, QWidget *parent, Qt::WFlags flags)
+B9Projector::B9Projector(bool bPrintWindow, QWidget *parent, Qt::WindowFlags flags)
 	: QWidget(parent, flags)
 {
 	hideCursor();

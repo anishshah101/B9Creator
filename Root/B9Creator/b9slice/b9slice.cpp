@@ -40,7 +40,7 @@
 #include "ui_b9slice.h"
 #include "b9layout/b9layoutprojectdata.h"
 #include <QSettings>
-
+#include <QMessageBox>
 B9Slice::B9Slice(QWidget *parent, B9Layout* Main) :
     QMainWindow(parent),
     ui(new Ui::B9Slice)

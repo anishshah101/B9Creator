@@ -47,6 +47,8 @@ QT       += svg
 QT       += opengl
 QT       += network
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 TEMPLATE = app
 
 INCLUDEPATH += b9slice
@@ -194,8 +196,6 @@ OTHER_FILES += \
     documentation/images/fadedfilemenu.png \
     documentation/images/browse.png
 
-
-
 #Windows Specifics-------------------------------------------------------------
 
 
@@ -206,11 +206,11 @@ win32{
 RC_FILE = WindowsResources/b9c_win_resources.rc
 
 #In windows this application needs elevated privileges to do self updates.
-QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
+#QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
 
 TARGET = B9Creator
 
-
+LIBS += -lopengl32 -lglu32
 }
 
 
@@ -238,5 +238,4 @@ unix:!macx: TARGET = B9Creator
 
 unix:!macx: LIBS += -lGLU
 unix:!macx: LIBS += -lz
-
 

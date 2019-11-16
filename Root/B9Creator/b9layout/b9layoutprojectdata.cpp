@@ -43,7 +43,8 @@
 #include "OS_Wrapper_Functions.h"
 #include <QDebug>
 #include <QFile>
-
+#include <QFileDialog>
+#include <QMessageBox>
 
 //////////////////////////////////
 //Public

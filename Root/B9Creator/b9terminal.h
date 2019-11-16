@@ -40,7 +40,7 @@
 #define B9TERMINAL_H
 
 #include <QDesktopWidget>
-#include <QtGui/QWidget>
+#include <QWidget>
 #include <QHideEvent>
 #include <QTimer>
 #include <QTime>
@@ -77,7 +77,7 @@ class B9Terminal : public QWidget
     Q_OBJECT
 
 public:
-    explicit B9Terminal(QWidget *parent = 0, Qt::WFlags flags = Qt::Widget);
+    explicit B9Terminal(QWidget *parent = 0, Qt::WindowFlags flags = Qt::Widget);
     ~B9Terminal();
 
     bool isConnected(){return pPrinterComm->isConnected();}

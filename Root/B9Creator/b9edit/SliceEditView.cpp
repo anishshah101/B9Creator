@@ -36,14 +36,14 @@
 //
 *************************************************************************************/
 
-#include <QtGui>
 #include "SliceEditView.h"
 #include <QClipboard>
-
+#include <QInputDialog>
+#include <QColorDialog>
 /////////////////////////////////
 //Public
 /////////////////////////////////
-SliceEditView::SliceEditView(QWidget *parent, Qt::WFlags flags) : QMainWindow(parent, flags)
+SliceEditView::SliceEditView(QWidget *parent, Qt::WindowFlags flags) : QMainWindow(parent, flags)
 {
 	ui.setupUi(this);
 
@@ -255,12 +255,12 @@ void SliceEditView::PromptBaseOptions()
 	int baselayers;
 	int fills;
 	bool cont;
-    baselayers = QInputDialog::getInteger(this, tr("Attachment Base"),
+    baselayers = QInputDialog::getInt(this, tr("Attachment Base"),
                                           tr("Object Standoff, # of Layers:"),
                                           pCPJ->getBase(), 0, 1000, 1, &cont, windowFlags() & ~Qt::WindowContextHelpButtonHint);
     if (!cont)
 		return;
-    fills = QInputDialog::getInteger(this, tr("Attachment Base"), tr("Filled Layers:"), pCPJ->getFilled(), 0, baselayers, 1, &cont, windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    fills = QInputDialog::getInt(this, tr("Attachment Base"), tr("Filled Layers:"), pCPJ->getFilled(), 0, baselayers, 1, &cont, windowFlags() & ~Qt::WindowContextHelpButtonHint);
 	if (!cont)
 		return;
 
@@ -402,7 +402,7 @@ void SliceEditView::SelectPenColor()
 void SliceEditView::SelectPenWidth()
 {
 	bool ok;
-    int newWidth = QInputDialog::getInteger(this, tr("Edit View"), tr("Select pen width:"), pDrawingContext->PenWidth, 1, 50, 1, &ok);
+    int newWidth = QInputDialog::getInt(this, tr("Edit View"), tr("Select pen width:"), pDrawingContext->PenWidth, 1, 50, 1, &ok);
     if (ok) pDrawingContext->SetPenWidth(newWidth);
 
 }

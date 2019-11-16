@@ -43,41 +43,49 @@
 #include <QDir>
 #include <QUrl>
 #include <QDebug>
+#include <QtDebug>
 #include <QApplication>
+#include <QtMessageHandler>
 #include <QDesktopServices>
+#include <qapplication.h>
 #include "OS_Wrapper_Functions.h"
 
 bool bGlobalPrinting;
 
 QString sLogFileName;
-void messageHandler(QtMsgType type, const char *msg)
+
+void messageHandler(QtMsgType type,const QMessageLogContext& context, const QString &msg)
 {
     QFile outFile(sLogFileName);
-    QTextStream ts;
-    QString txt;
-    txt = QDateTime::currentDateTime().toString("yy.MM.dd hh:mm:ss.zzz");
-    switch (type) {
+    QString text;
+    switch(type)
+    {
     case QtDebugMsg:
-        if(!bGlobalPrinting){
-            fprintf(stderr, "Debug: %s\n", msg);
-            txt += QString("  : %1").arg(msg);
-            outFile.open(QIODevice::WriteOnly | QIODevice::Append);
-            ts.setDevice(&outFile);
-            ts << txt << "\r" << endl;
-            outFile.close();
-        }
+        text = QString("Debug:");
         break;
+
     case QtWarningMsg:
-        fprintf(stderr, "Warning: %s\n", msg);
-    break;
+        text = QString("Warning:");
+        break;
     case QtCriticalMsg:
-        fprintf(stderr, "Critical: %s\n", msg);
-    break;
+        text = QString("Critical:");
+        break;
     case QtFatalMsg:
-        fprintf(stderr, "Fatal: %s\n", msg);
+        text = QString("Fatal:");
     }
-    if(type== QtFatalMsg)
-        abort();
+
+    // 设置输出信息格式
+    QString context_info = QString("File:(%1) Line:(%2)").arg(QString(context.file)).arg(context.line);
+    QString current_date_time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd");
+    QString current_date = QString("(%1)").arg(current_date_time);
+    QString message = QString("%1 %2 %3 %4").arg(text).arg(context_info).arg(msg).arg(current_date);
+
+    // 输出信息至文件中（读写、追加形式）
+    outFile.open(QIODevice::WriteOnly | QIODevice::Append);
+    QTextStream text_stream(&outFile);
+    text_stream << message << "\r\n";
+    outFile.flush();
+    outFile.close();
 }
 
 LogFileManager::LogFileManager(QString sLogFile, QString sHeader)
@@ -91,12 +99,13 @@ LogFileManager::LogFileManager(QString sLogFile, QString sHeader)
     QTextStream ts(&outFile);
     ts << sHeader << "\r\n\r" << endl;
     outFile.close();
-    qInstallMsgHandler(messageHandler);
+    //注册MessageHandler
+    qInstallMessageHandler(messageHandler);
 }
 
 LogFileManager::~LogFileManager()
 {
-    qInstallMsgHandler(0);
+    qInstallMessageHandler(nullptr);
 }
 
 void LogFileManager::setPrinting(bool bPrinting)

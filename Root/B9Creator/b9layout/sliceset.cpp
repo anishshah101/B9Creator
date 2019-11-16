@@ -43,7 +43,7 @@
 #include "b9layoutprojectdata.h"
 #include "crushbitmap.h"
 #include <QColor>
-
+#include <QtConcurrent/QtConcurrent>
 #include <QtDebug>
 #include <QFutureSynchronizer>
 

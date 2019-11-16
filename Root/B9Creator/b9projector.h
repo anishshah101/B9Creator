@@ -51,7 +51,7 @@ class B9Projector : public QWidget
 	Q_OBJECT
 
 public:
-    B9Projector(bool bPrintWindow, QWidget *parent = 0, Qt::WFlags flags = Qt::WindowMinMaxButtonsHint|Qt::Window|Qt::WindowCloseButtonHint);
+    B9Projector(bool bPrintWindow, QWidget *parent = 0, Qt::WindowFlags flags = Qt::WindowMinMaxButtonsHint|Qt::Window|Qt::WindowCloseButtonHint);
     ~B9Projector();
 
 public slots:

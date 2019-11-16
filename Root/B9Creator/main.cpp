@@ -36,7 +36,7 @@
 //
 *************************************************************************************/
 
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QSplashScreen>
 #include "b9nativeapp.h"
 #include <QDir>

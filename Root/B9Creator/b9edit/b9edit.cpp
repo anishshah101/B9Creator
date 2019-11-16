@@ -35,15 +35,16 @@
 //    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 *************************************************************************************/
-
+#include <QInputDialog>
 #include "b9edit.h"
 #include "loadingbar.h"
 #include <QFileInfo>
 #include <QFile>
+#include <QDesktopWidget>
 #include <QSvgRenderer> // see copyright distribution notice on qt's website!
 #include <OS_Wrapper_Functions.h>
 //Public
-B9Edit::B9Edit(QWidget *parent, Qt::WFlags flags, QString infile)
+B9Edit::B9Edit(QWidget *parent, Qt::WindowFlags flags, QString infile)
 	: QMainWindow(parent, flags)
 {
 	ui.setupUi(this);
@@ -951,7 +952,7 @@ void B9Edit::ExportToFolder()
         //save the image with 4 leading zeros so that the images sort well in the OS explorer.
         buff.save(folder + "\\" + cPJ.getName() + "_" +
                   QString("%1").arg(s+1,4,10,QChar('0')) + "." +
-                    format.toLower(),format.toAscii(),100);
+                    format.toLower(),format.toLatin1(),100);
 		bar.setValue(s);
 		//give the app the ability to proccess events
 		QApplication::processEvents();

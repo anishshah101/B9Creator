@@ -567,7 +567,8 @@ void CrushedPrintJob::inflateSlice(int sliceIndx, QImage* pImage, int xOffset, i
 
     if(sliceIndx < 0 || sliceIndx >= getTotalLayers()) return;
 
-    getCBMSlice(sliceIndx)->inflateSlice(pImage, xOffset, yOffset, bUseNaturalSize);
+    CrushedBitMap* bitmap = getCBMSlice(sliceIndx);
+    bitmap->inflateSlice(pImage, xOffset, yOffset, bUseNaturalSize);
 
 	//Todo Render filled Extent && Supports
 	if(mShowSupports){
